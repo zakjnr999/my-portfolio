@@ -9,7 +9,7 @@ final List<Recommendation> demo_recommendations = [
     name: "Dr. Emmanuel Mensah",
     source: "LinkedIn",
     text:
-        "I had the privilege of collaborating with Muktar on the Departmental Mobile App project. His technical expertise in Flutter development and ability to translate complex requirements into intuitive user interfaces is exceptional. Muktar consistently delivers high-quality code and demonstrates strong problem-solving skills. A true professional who would be an asset to any development team.",
+        "I had the privilege of collaborating with Muktar on the CITSA mobile platform. His technical expertise in Flutter development and his ability to translate complex requirements into intuitive user interfaces is exceptional. Muktar consistently delivers high-quality code and demonstrates strong problem-solving skills. He would be an asset to any engineering team.",
   ),
   Recommendation(
     name: "Sarah Osei-Tutu",
@@ -21,7 +21,7 @@ final List<Recommendation> demo_recommendations = [
     name: "Michael Adjei",
     source: "GitHub",
     text:
-        "Muktar's contribution to our hostel booking project was invaluable. His attention to detail, clean code architecture, and commitment to best practices made the development process smooth and efficient. He has a rare combination of technical prowess and creative problem-solving that makes him stand out. Highly recommended for any Flutter development work.",
+        "Muktar's contribution to the GrabGO product suite was invaluable. His attention to detail, clean code architecture, and commitment to best practices made the development process smooth and efficient. He has a rare combination of technical skill and creative problem-solving that makes him stand out. Highly recommended for Flutter and mobile product work.",
   ),
   Recommendation(
     name: "Jennifer Boateng",

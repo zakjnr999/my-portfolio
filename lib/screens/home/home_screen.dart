@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/constants.dart';
+import 'package:my_portfolio/responsive.dart';
 import 'package:my_portfolio/screens/home/components/about_section.dart';
 import 'package:my_portfolio/screens/home/components/contact_section.dart';
 import 'package:my_portfolio/screens/home/components/home_banner.dart';
@@ -48,39 +49,41 @@ class MyBuiltAnimatedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: Theme.of(
-        context,
-      ).textTheme.bodySmall!.copyWith(color: Colors.white),
-      child: Row(
-        children: [
-          FlutterCodedText(),
-          SizedBox(width: defaultPadding / 2),
-          Text("Built a "),
-          AnimatedTextKit(
-            repeatForever: true,
-            animatedTexts: [
-              TypewriterAnimatedText(
-                "Full-Stack Food Delivery Platform with Customer and Rider Apps.",
-                speed: Duration(milliseconds: 60),
-              ),
-              TypewriterAnimatedText(
-                "AI-Powered Study Assistant for Students.",
-                speed: Duration(milliseconds: 60),
-              ),
-              TypewriterAnimatedText(
-                "Academic Collaboration Hub for Computer Science Students.",
-                speed: Duration(milliseconds: 60),
-              ),
-              TypewriterAnimatedText(
-                "Organization Management System for UTAG National.",
-                speed: Duration(milliseconds: 60),
-              ),
-            ],
-          ),
+    final double animatedHeight = Responsive.isMobile(context) ? 70 : 56;
 
-          SizedBox(width: defaultPadding / 2),
-          FlutterCodedText(),
+    return DefaultTextStyle(
+      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+        color: Colors.white,
+        fontSize: Responsive.isMobile(context) ? 14 : 16,
+        height: 1.6,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const FlutterCodedText(),
+          const SizedBox(height: defaultPadding / 3),
+          SizedBox(
+            height: animatedHeight,
+            child: AnimatedTextKit(
+              repeatForever: true,
+              pause: const Duration(milliseconds: 1200),
+              displayFullTextOnTap: true,
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  "GrabGO customer, rider, and vendor experiences.",
+                  speed: const Duration(milliseconds: 50),
+                ),
+                TypewriterAnimatedText(
+                  "Student community workflows for CITSA UCC.",
+                  speed: const Duration(milliseconds: 50),
+                ),
+                TypewriterAnimatedText(
+                  "Welfare and communication tools for UTAG National.",
+                  speed: const Duration(milliseconds: 50),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

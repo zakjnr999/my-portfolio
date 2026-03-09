@@ -27,23 +27,23 @@ class SideMenu extends StatelessWidget {
       backgroundColor: secondaryColor,
       child: Column(
         children: [
-          MyInfo(),
+          const MyInfo(),
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.all(defaultPadding),
+              padding: const EdgeInsets.all(defaultPadding),
               child: Column(
                 children: [
-                  AreaInfoText(title: "Residence", text: "Ghana"),
-                  AreaInfoText(title: "City", text: "Accra"),
-                  AreaInfoText(title: "Age", text: "22"),
-                  Skills(),
-                  SizedBox(height: defaultPadding),
-                  Coding(),
-                  Knowledge(),
-                  Divider(color: darkColor),
-                  SizedBox(height: defaultPadding / 2),
+                  const AreaInfoText(title: "Residence", text: "Ghana"),
+                  const AreaInfoText(title: "City", text: "Accra"),
+                  const AreaInfoText(title: "Age", text: "22"),
+                  const Skills(),
+                  const SizedBox(height: defaultPadding),
+                  const Coding(),
+                  const Knowledge(),
+                  const Divider(color: darkColor),
+                  const SizedBox(height: defaultPadding / 2),
                   _buildDownloadButton(context),
-                  SizedBox(height: defaultPadding),
+                  const SizedBox(height: defaultPadding),
                   _buildSocialLinks(context),
                 ],
               ),
@@ -59,27 +59,26 @@ class SideMenu extends StatelessWidget {
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: BorderRadius.circular(10),
-        
       ),
       child: Column(
         children: [
-          MyInfo(),
+          const MyInfo(),
           Expanded(
             child: SingleChildScrollView(
-              padding: EdgeInsets.all(defaultPadding),
+              padding: const EdgeInsets.all(defaultPadding),
               child: Column(
                 children: [
-                  AreaInfoText(title: "Residence", text: "Ghana"),
-                  AreaInfoText(title: "City", text: "Accra"),
-                  AreaInfoText(title: "Age", text: "21"),
-                  Skills(),
-                  SizedBox(height: defaultPadding),
-                  Coding(),
-                  Knowledge(),
-                  Divider(color: darkColor),
-                  SizedBox(height: defaultPadding / 2),
+                  const AreaInfoText(title: "Residence", text: "Ghana"),
+                  const AreaInfoText(title: "City", text: "Accra"),
+                  const AreaInfoText(title: "Age", text: "21"),
+                  const Skills(),
+                  const SizedBox(height: defaultPadding),
+                  const Coding(),
+                  const Knowledge(),
+                  const Divider(color: darkColor),
+                  const SizedBox(height: defaultPadding / 2),
                   _buildDownloadButton(context),
-                  SizedBox(height: defaultPadding),
+                  const SizedBox(height: defaultPadding),
                   _buildSocialLinks(context),
                 ],
               ),
@@ -102,10 +101,10 @@ class SideMenu extends StatelessWidget {
           try {
             // For web, we'll use url_launcher to open the CV
             final cvUrl = Uri.parse('assets/doc/Muktar Zakari Junior CV.pdf');
-            
+
             if (await canLaunchUrl(cvUrl)) {
               await launchUrl(cvUrl, mode: LaunchMode.externalApplication);
-              
+
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -119,7 +118,9 @@ class SideMenu extends StatelessWidget {
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text("Could not open CV. Please contact me directly."),
+                    content: Text(
+                      "Could not open CV. Please contact me directly.",
+                    ),
                     backgroundColor: Colors.red,
                   ),
                 );
@@ -137,7 +138,7 @@ class SideMenu extends StatelessWidget {
           }
         },
         style: TextButton.styleFrom(
-          padding: EdgeInsets.symmetric(vertical: defaultPadding / 2),
+          padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
         ),
         child: FittedBox(
           child: Row(
@@ -150,7 +151,7 @@ class SideMenu extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: defaultPadding / 2),
+              const SizedBox(width: defaultPadding / 2),
               SvgPicture.asset(
                 Assets.icons.download,
                 colorFilter: ColorFilter.mode(primaryColor, BlendMode.srcIn),
@@ -164,13 +165,15 @@ class SideMenu extends StatelessWidget {
 
   Widget _buildSocialLinks(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(defaultPadding / 2),
+      padding: const EdgeInsets.all(defaultPadding / 2),
       decoration: BoxDecoration(
         color: darkColor,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Wrap(
+        alignment: WrapAlignment.center,
+        spacing: defaultPadding / 2,
+        runSpacing: defaultPadding / 2,
         children: [
           _buildSocialIcon(
             context,
@@ -183,18 +186,6 @@ class SideMenu extends StatelessWidget {
             Assets.icons.github,
             "https://github.com/zakjnr999",
             "GitHub",
-          ),
-          _buildSocialIcon(
-            context,
-            Assets.icons.twitter,
-            "https://x.com/zakjnr12",
-            "Twitter",
-          ),
-          _buildSocialIcon(
-            context,
-            Assets.icons.behance,
-            "https://behance.net",
-            "Behance",
           ),
         ],
       ),

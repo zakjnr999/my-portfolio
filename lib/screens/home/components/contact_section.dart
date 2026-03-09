@@ -7,11 +7,17 @@ class ContactSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double fontSize = Responsive.isMobile(context) ? 24 : Responsive.isTablet(context) ? 28 : 32;
-    
+    final double fontSize = Responsive.isMobile(context)
+        ? 24
+        : Responsive.isTablet(context)
+        ? 28
+        : 32;
+
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding,
+        vertical: Responsive.isMobile(context)
+            ? defaultPadding / 2
+            : defaultPadding,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,17 +25,40 @@ class ContactSection extends StatelessWidget {
           Text(
             "Get In Touch",
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Colors.white,
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: Colors.white,
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding),
+          SizedBox(
+            height: Responsive.isMobile(context)
+                ? defaultPadding / 2
+                : defaultPadding,
+          ),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 760),
+            child: Text(
+              "I am open to National Service placements and software development opportunities where I can contribute to product delivery, mobile engineering, and backend integration.",
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                fontSize: Responsive.isMobile(context) ? 13 : 14,
+                height: 1.7,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: Responsive.isMobile(context)
+                ? defaultPadding
+                : defaultPadding * 1.2,
+          ),
           Responsive(
             mobile: Column(
               children: [
                 _buildContactInfo(context),
-                SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding),
+                SizedBox(
+                  height: Responsive.isMobile(context)
+                      ? defaultPadding / 2
+                      : defaultPadding,
+                ),
                 _buildContactForm(context),
               ],
             ),
@@ -49,7 +78,28 @@ class ContactSection extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(
+            height: Responsive.isMobile(context)
+                ? defaultPadding
+                : defaultPadding * 1.5,
+          ),
+          _buildFlutterSignature(context),
         ],
+      ),
+    );
+  }
+
+  Widget _buildFlutterSignature(BuildContext context) {
+    return Align(
+      alignment: Alignment.center,
+      child: Text(
+        "Made with Flutter",
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: bodyTextColor,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.3,
+        ),
       ),
     );
   }
@@ -67,10 +117,10 @@ class ContactSection extends StatelessWidget {
           Text(
             "Contact Information",
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: defaultPadding * 2),
           _buildContactItem(
@@ -80,12 +130,7 @@ class ContactSection extends StatelessWidget {
             "zakjnr165@gmail.com",
           ),
           const SizedBox(height: defaultPadding),
-          _buildContactItem(
-            context,
-            Icons.phone,
-            "Phone",
-            "+233 53 699 7662",
-          ),
+          _buildContactItem(context, Icons.phone, "Phone", "+233 53 599 7662"),
           const SizedBox(height: defaultPadding),
           _buildContactItem(
             context,
@@ -121,13 +166,7 @@ class ContactSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                label,
-                style: TextStyle(
-                  color: bodyTextColor,
-                  fontSize: 12,
-                ),
-              ),
+              Text(label, style: TextStyle(color: bodyTextColor, fontSize: 12)),
               const SizedBox(height: 4),
               Text(
                 value,
@@ -206,7 +245,6 @@ class _ContactFormState extends State<ContactForm> {
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: BorderRadius.circular(10),
- 
       ),
       child: Form(
         key: _formKey,
@@ -216,12 +254,16 @@ class _ContactFormState extends State<ContactForm> {
             Text(
               "Send Message",
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding),
+            SizedBox(
+              height: Responsive.isMobile(context)
+                  ? defaultPadding / 2
+                  : defaultPadding,
+            ),
             Responsive(
               mobile: Column(
                 children: [
@@ -431,4 +473,3 @@ class _ContactFormState extends State<ContactForm> {
     );
   }
 }
-

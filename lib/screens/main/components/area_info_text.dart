@@ -11,20 +11,26 @@ class AreaInfoText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: defaultPadding / 2),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            title!,
-            style: TextStyle(
-              color: bodyTextColor,
-              fontWeight: FontWeight.w500,
+          Expanded(
+            child: Text(
+              title!,
+              style: TextStyle(
+                color: bodyTextColor,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
-          Text(
-            text!,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+          const SizedBox(width: defaultPadding / 2),
+          Flexible(
+            child: Text(
+              text!,
+              textAlign: TextAlign.end,
+              softWrap: true,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/constants.dart';
-import 'package:my_portfolio/responsive.dart';
 import 'package:my_portfolio/screens/main/components/side_menu.dart';
 
 class MainScreen extends StatefulWidget {
@@ -17,102 +16,109 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.sizeOf(context).width;
+    final bool useCompactLayout = screenWidth < 1100;
+    final double horizontalPadding = useCompactLayout
+        ? defaultPadding / 2
+        : screenWidth < 1350
+        ? defaultPadding
+        : defaultPadding * 1.5;
+    final double verticalPadding = useCompactLayout
+        ? defaultPadding / 2
+        : defaultPadding;
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: bgColor,
-      drawer: Responsive.isMobile(context) ? SideMenu() : null,
+      drawer: useCompactLayout ? const SideMenu() : null,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              bgColor,
-              darkColor.withValues(alpha: 0.5),
-              bgColor,
-            ],
+            colors: [bgColor, darkColor.withValues(alpha: 0.5), bgColor],
           ),
         ),
         child: SafeArea(
-          child: Center(
-              child: Container(
-              constraints: BoxConstraints(maxWidth: maxWidth),
-              padding: EdgeInsets.symmetric(
-                horizontal: Responsive.isMobile(context)
-                    ? defaultPadding / 2
-                    : Responsive.isTablet(context)
-                        ? defaultPadding
-                        : defaultPadding * 1.5,
-                vertical: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding,
-              ),
-              child: Responsive(
-                mobile: Column(
-                  children: [
-                    _buildMobileAppBar(context),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            const SizedBox(height: defaultPadding / 2),
-                            ...widget.children.map((child) => Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: defaultPadding),
-                                  child: child,
-                                )),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                tablet: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(flex: 2, child: SideMenu()),
-                    SizedBox(width: defaultPadding),
-                    Expanded(
-                      flex: 7,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            const SizedBox(height: defaultPadding),
-                            ...widget.children.map((child) => Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: defaultPadding * 1.5),
-                                  child: child,
-                                )),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                desktop: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(flex: 2, child: SideMenu()),
-                    SizedBox(width: defaultPadding * 1.5),
-                    Expanded(
-                      flex: 7,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            const SizedBox(height: defaultPadding),
-                            ...widget.children.map((child) => Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: defaultPadding * 2),
-                                  child: child,
-                                )),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: verticalPadding,
+            ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final double contentWidth = constraints.maxWidth > maxWidth
+                    ? maxWidth
+                    : constraints.maxWidth;
+                final double sideMenuWidth = contentWidth < 1350 ? 320 : 285;
+                final double contentSpacing = contentWidth < 1350
+                    ? defaultPadding * 1.5
+                    : defaultPadding * 2;
+
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                    width: contentWidth,
+                    height: constraints.maxHeight,
+                    child: useCompactLayout
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _buildMobileAppBar(context),
+                              Expanded(
+                                child: _buildContentScrollView(
+                                  topSpacing: defaultPadding / 2,
+                                  itemSpacing: defaultPadding,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              SizedBox(
+                                width: sideMenuWidth,
+                                child: const SideMenu(),
+                              ),
+                              SizedBox(
+                                width: contentWidth < 1350
+                                    ? defaultPadding
+                                    : defaultPadding * 1.5,
+                              ),
+                              Expanded(
+                                child: _buildContentScrollView(
+                                  topSpacing: defaultPadding,
+                                  itemSpacing: contentSpacing,
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
+                );
+              },
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildContentScrollView({
+    required double topSpacing,
+    required double itemSpacing,
+  }) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(height: topSpacing),
+          ...widget.children.map(
+            (child) => Padding(
+              padding: EdgeInsets.only(bottom: itemSpacing),
+              child: child,
+            ),
+          ),
+        ],
       ),
     );
   }

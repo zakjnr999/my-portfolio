@@ -9,14 +9,20 @@ class AboutSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        vertical: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding,
+        vertical: Responsive.isMobile(context)
+            ? defaultPadding / 2
+            : defaultPadding,
       ),
       child: Responsive(
         mobile: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildAboutContent(context),
-            SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding),
+            SizedBox(
+              height: Responsive.isMobile(context)
+                  ? defaultPadding / 2
+                  : defaultPadding,
+            ),
             _buildPersonalInfo(context),
           ],
         ),
@@ -41,53 +47,72 @@ class AboutSection extends StatelessWidget {
   }
 
   Widget _buildAboutContent(BuildContext context) {
-    final double fontSize = Responsive.isMobile(context) ? 24 : Responsive.isTablet(context) ? 28 : 32;
+    final double fontSize = Responsive.isMobile(context)
+        ? 24
+        : Responsive.isTablet(context)
+        ? 28
+        : 32;
     final double textSize = Responsive.isMobile(context) ? 14 : 16;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "About Me",
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Colors.white,
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-              ),
+            color: Colors.white,
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding),
+        SizedBox(
+          height: Responsive.isMobile(context)
+              ? defaultPadding / 2
+              : defaultPadding,
+        ),
         Container(
-          padding: EdgeInsets.all(Responsive.isMobile(context) ? defaultPadding / 1.5 : defaultPadding),
+          padding: EdgeInsets.all(
+            Responsive.isMobile(context)
+                ? defaultPadding / 1.5
+                : defaultPadding,
+          ),
           decoration: BoxDecoration(
             color: secondaryColor,
             borderRadius: BorderRadius.circular(10),
-           
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "I'm a passionate Flutter Full-Stack Developer with 5 years of experience in mobile and web development. I specialize in creating beautiful, responsive, and performant applications using Flutter and Dart, with strong backend expertise in Node.js and Express.",
+                "I am a Flutter full-stack developer focused on building mobile apps that solve practical operational and community problems. Across products like GrabGO, CITSA, and UTAG, I work on interface implementation, feature architecture, and backend-aware product delivery.",
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      height: 1.8,
-                      fontSize: textSize,
-                    ),
+                  height: 1.8,
+                  fontSize: textSize,
+                ),
               ),
-              SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 1.5 : defaultPadding),
-              Text(
-                "My journey in software development started with a curiosity about how applications work, and it has evolved into a career focused on building user-centric, full-stack solutions. From crafting intuitive mobile interfaces to architecting robust backend systems, I love turning complex problems into simple, elegant, and scalable applications.",
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      height: 1.8,
-                      fontSize: textSize,
-                    ),
+              SizedBox(
+                height: Responsive.isMobile(context)
+                    ? defaultPadding / 1.5
+                    : defaultPadding,
               ),
-              SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 1.5 : defaultPadding),
               Text(
-                "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community. I'm always excited to take on new challenges and collaborate on innovative projects.",
+                "My strength is turning product requirements into clear mobile flows such as onboarding, dashboards, status tracking, and role-based interfaces. I am comfortable building with Flutter and Dart on the client side and integrating with services built on Node.js, Express, Firebase, and real-time backend infrastructure.",
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      height: 1.8,
-                      fontSize: textSize,
-                    ),
+                  height: 1.8,
+                  fontSize: textSize,
+                ),
+              ),
+              SizedBox(
+                height: Responsive.isMobile(context)
+                    ? defaultPadding / 1.5
+                    : defaultPadding,
+              ),
+              Text(
+                "I am currently seeking a National Service opportunity where I can contribute to a strong engineering team, keep improving as a developer, and bring discipline, ownership, and fast learning to real product work from day one.",
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  height: 1.8,
+                  fontSize: textSize,
+                ),
               ),
             ],
           ),
@@ -98,21 +123,29 @@ class AboutSection extends StatelessWidget {
 
   Widget _buildPersonalInfo(BuildContext context) {
     final double fontSize = Responsive.isMobile(context) ? 20 : 24;
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Personal Information",
+          "Profile",
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                color: Colors.white,
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-              ),
+            color: Colors.white,
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        SizedBox(height: Responsive.isMobile(context) ? defaultPadding / 2 : defaultPadding),
+        SizedBox(
+          height: Responsive.isMobile(context)
+              ? defaultPadding / 2
+              : defaultPadding,
+        ),
         Container(
-          padding: EdgeInsets.all(Responsive.isMobile(context) ? defaultPadding / 1.5 : defaultPadding),
+          padding: EdgeInsets.all(
+            Responsive.isMobile(context)
+                ? defaultPadding / 1.5
+                : defaultPadding,
+          ),
           decoration: BoxDecoration(
             color: secondaryColor,
             borderRadius: BorderRadius.circular(10),
@@ -127,7 +160,11 @@ class AboutSection extends StatelessWidget {
               const Divider(color: darkColor),
               _buildInfoRow(context, "Phone", "+233 53 599 7662"),
               const Divider(color: darkColor),
-              _buildInfoRow(context, "Freelance", "Available"),
+              _buildInfoRow(
+                context,
+                "Availability",
+                "Open to National Service",
+              ),
             ],
           ),
         ),
@@ -138,26 +175,65 @@ class AboutSection extends StatelessWidget {
   Widget _buildInfoRow(BuildContext context, String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: TextStyle(
-              color: bodyTextColor,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            value,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final bool shouldStack = constraints.maxWidth < 320;
+
+          if (shouldStack) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: bodyTextColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    value,
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }
+
+          return Row(
+            children: [
+              Expanded(
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: bodyTextColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(width: defaultPadding),
+              Expanded(
+                flex: 2,
+                child: Text(
+                  value,
+                  textAlign: TextAlign.end,
+                  softWrap: true,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
 }
-
